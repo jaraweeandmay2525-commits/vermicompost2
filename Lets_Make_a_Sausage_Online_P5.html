@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Let's Make a Sausage Sandwich! | ป.5</title>
+<style>
+:root{--green:#20b86b;--mint:#e9fff3;--yellow:#ffd93d;--blue:#55b8ff;--pink:#ff82b2;--purple:#9b6cff;--orange:#ff9f43;--ink:#173b35;--white:#fff;--soft:#f7fbff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Noto Sans Thai","Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(135deg,#fffdf2,#eafaff 48%,#fff0f7);line-height:1.65}
+header{position:relative;overflow:hidden;text-align:center;padding:44px 18px;background:linear-gradient(135deg,#b8f7d4,#fff29a 48%,#ffd7eb);border-bottom:5px solid #fff}.bubble{position:absolute;border-radius:50%;opacity:.35;background:#fff}.b1{width:110px;height:110px;left:4%;top:12px}.b2{width:70px;height:70px;right:8%;top:70px}.badge{display:inline-block;background:#fff;border-radius:999px;padding:7px 16px;font-weight:800;box-shadow:0 5px 15px #173b3514}.hero{font-size:clamp(34px,7vw,62px);margin:10px 0;font-weight:900}.subtitle{font-size:20px;font-weight:700}.wrap{max-width:1050px;margin:auto;padding:18px}.card{background:#fff;border-radius:28px;padding:25px;margin:18px 0;box-shadow:0 12px 30px #173b3515;border:3px solid #fff}.card h2{margin-top:0;color:#167b55}.hidden{display:none}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:13px}.tile{background:linear-gradient(135deg,#fffdf0,#effaff);border:2px solid #e8f1ed;border-radius:20px;padding:16px;text-align:center;transition:.2s}.tile:hover{transform:translateY(-4px);box-shadow:0 8px 18px #173b3512}.emoji{font-size:48px}.btn{border:0;border-radius:15px;padding:12px 19px;background:linear-gradient(135deg,#1fb76a,#10a9b4);color:#fff;font-size:16px;font-weight:800;cursor:pointer;margin:5px;box-shadow:0 6px 14px #20b86b30}.btn:hover{transform:translateY(-2px)}.btn.yellow{background:linear-gradient(135deg,#ffbf00,#ff8f3d)}.btn.pink{background:linear-gradient(135deg,#ff75ae,#9d6cff)}input[type=text]{width:min(100%,480px);padding:13px;border:2px solid #cfe9dc;border-radius:13px;font-size:17px}.progress{height:16px;background:#e9efec;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#20b86b,#55b8ff,#ff82b2);transition:.4s}.step{display:flex;gap:13px;align-items:flex-start;background:#f8fcff;padding:15px;border-radius:18px;margin:10px 0;border-left:6px solid var(--yellow)}.num{min-width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);font-weight:900;font-size:21px}.option{display:block;width:100%;text-align:left;padding:13px;margin:8px 0;border:2px solid #dfebe6;background:#fbfffd;border-radius:14px;cursor:pointer;font-size:16px}.option:hover{background:#f1fff8}.correct{background:#dff8e8!important;border-color:#28b96f!important}.wrong{background:#ffe4e8!important;border-color:#ff6b6b!important}.feedback{font-weight:800;min-height:27px}.big{font-size:24px;font-weight:900}.tag{display:inline-block;padding:5px 11px;border-radius:999px;background:#e8f8ff;margin:3px;font-weight:800}.game{background:linear-gradient(135deg,#fff5cf,#eafff4,#ffe9f4);border:3px dashed #ffb300}.certificate{border:9px double #e2a500;padding:32px;text-align:center;background:#fffdf4}.certificate h3{font-size:34px;margin:8px}.mini{font-size:13px;color:#65756f}footer{text-align:center;padding:30px;color:#667873}@media(max-width:600px){.card{padding:19px}.hero{font-size:38px}.subtitle{font-size:17px}}
+</style>
+</head>
+<body>
+<header><div class="bubble b1"></div><div class="bubble b2"></div><div class="badge">🌈 Digital English Lesson • Primary 5</div><div class="hero">🌭 Let's Make a Sandwich!</div><div class="subtitle">Learn • Practice • Play • Create • Show What You Know</div></header>
+<div class="wrap">
+<section class="card" id="welcome">
+<h2>👋 Welcome, Young Chef!</h2><p class="big">ยินดีต้อนรับสู่บทเรียนออนไลน์เรื่อง <b>Let's Make a Sausage Sandwich!</b></p><p>เรียนรู้คำศัพท์ ฝึกอ่านคำสั่ง ทำกิจกรรม เล่นเกม และทำ Post-test ด้วยตนเอง</p>
+<input id="studentName" type="text" placeholder="พิมพ์ชื่อ-นามสกุลของนักเรียน"><br><button class="btn" onclick="startLesson()">🚀 เริ่มเรียน</button><div id="welcomeMsg" class="feedback"></div>
+</section>
+<section class="card hidden" id="pretest"><h2>📝 Pre-test</h2><p>ทำแบบทดสอบก่อนเรียน 5 ข้อ</p><div id="preQuestions"></div><button class="btn yellow" onclick="submitTest('pre')">ส่ง Pre-test ✨</button><div id="preResult" class="feedback"></div></section>
+<section class="card hidden" id="lesson"><h2>🎯 Learning Goals</h2><div class="grid"><div class="tile">📚<br><b>Vocabulary</b><br>คำศัพท์ส่วนผสม</div><div class="tile">🔪<br><b>Action Words</b><br>คำกริยา</div><div class="tile">🧑‍🍳<br><b>Procedure</b><br>ขั้นตอนการทำ</div><div class="tile">💬<br><b>English</b><br>สื่อสารง่าย ๆ</div></div><p><b>ความก้าวหน้าของฉัน</b></p><div class="progress"><div class="bar" id="bar"></div></div><p><span id="pct">0</span>%</p></section>
+<section class="card hidden activity" data-p="15"><h2>1️⃣ Vocabulary Kitchen 🌭</h2><p>แตะคำศัพท์เพื่อฝึกจำและออกเสียง</p><div class="grid"><div class="tile" onclick="speak('Bread')"><div class="emoji">🍞</div><b>Bread</b><br>ขนมปัง</div><div class="tile" onclick="speak('Sausage')"><div class="emoji">🌭</div><b>Sausage</b><br>ไส้กรอก</div><div class="tile" onclick="speak('Egg')"><div class="emoji">🥚</div><b>Egg</b><br>ไข่</div><div class="tile" onclick="speak('Lettuce')"><div class="emoji">🥬</div><b>Lettuce</b><br>ผักกาดหอม</div><div class="tile" onclick="speak('Tomato')"><div class="emoji">🍅</div><b>Tomato</b><br>มะเขือเทศ</div><div class="tile" onclick="speak('Cucumber')"><div class="emoji">🥒</div><b>Cucumber</b><br>แตงกวา</div></div><button class="btn" onclick="completeActivity(this)">✅ ผ่านกิจกรรม</button></section>
+<section class="card hidden activity" data-p="15"><h2>2️⃣ Action Words + Listen 🎧</h2><div class="grid"><div class="tile" onclick="speak('cut')">🔪<br><b>cut</b><br>ตัด</div><div class="tile" onclick="speak('spread')">🥄<br><b>spread</b><br>ทา</div><div class="tile" onclick="speak('add')">➕<br><b>add</b><br>ใส่ / เพิ่ม</div><div class="tile" onclick="speak('put')">⬆️<br><b>put</b><br>วาง</div><div class="tile" onclick="speak('close')">🤲<br><b>close</b><br>ปิด</div></div><button class="btn" onclick="completeActivity(this)">🔊 ฟังและผ่านกิจกรรม</button></section>
+<section class="card hidden activity" data-p="20"><h2>3️⃣ Let's Make It! 👩‍🍳</h2><p>ขั้นตอนการทำคงเดิม แต่เปลี่ยนส่วนผสมหลักเป็น <b>SAUSAGE 🌭</b></p><div class="step"><span class="num">1</span><div><b>Prepare the bread.</b><br>เตรียมขนมปัง</div></div><div class="step"><span class="num">2</span><div><b>Spread the sauce.</b><br>ทาซอสบนขนมปัง</div></div><div class="step"><span class="num">3</span><div><b>Add the sausage and egg.</b><br>ใส่ไส้กรอกและไข่</div></div><div class="step"><span class="num">4</span><div><b>Add lettuce, tomato and cucumber.</b><br>ใส่ผักกาดหอม มะเขือเทศ และแตงกวา</div></div><div class="step"><span class="num">5</span><div><b>Put another bread on top.</b><br>วางขนมปังอีกแผ่นด้านบน</div></div><div class="step"><span class="num">6</span><div><b>Close the sandwich and enjoy!</b><br>ประกบแซนด์วิชแล้วรับประทาน</div></div><button class="btn" onclick="completeActivity(this)">🥪 ฉันเข้าใจขั้นตอนแล้ว</button></section>
+<section class="card hidden activity" data-p="15"><h2>4️⃣ Quick Check ⚡</h2><p><b>Which ingredient is the main ingredient?</b></p><button class="option" onclick="quiz(this,true,'q1')">🌭 Sausage</button><button class="option" onclick="quiz(this,false,'q1')">🍦 Ice cream</button><button class="option" onclick="quiz(this,false,'q1')">🍩 Donut</button><div id="q1" class="feedback"></div><p><b>What do you do before adding the sausage?</b></p><button class="option" onclick="quiz(this,true,'q2')">Spread the sauce.</button><button class="option" onclick="quiz(this,false,'q2')">Eat the sandwich.</button><div id="q2" class="feedback"></div></section>
+<section class="card hidden activity game" id="gameCard" data-p="20"><h2>5️⃣ 🎮 Sausage Sandwich Game!</h2><p><b>Mission:</b> เลือกส่วนผสมที่เหมาะกับแซนด์วิชให้ครบ 3 อย่าง 🌟</p><div class="grid"><button class="option" onclick="gamePick(this,true)">🌭 Sausage</button><button class="option" onclick="gamePick(this,false)">🍦 Ice cream</button><button class="option" onclick="gamePick(this,true)">🍅 Tomato</button><button class="option" onclick="gamePick(this,false)">🍭 Candy</button><button class="option" onclick="gamePick(this,true)">🥬 Lettuce</button><button class="option" onclick="gamePick(this,false)">🍩 Donut</button></div><div id="gameScore" class="big">คะแนนเกม: 0 / 3</div><div id="gameMsg" class="feedback"></div></section>
+<section class="card hidden activity" id="activity6" data-p="15">
+<h2>6️⃣ ✨ Create My Sandwich</h2>
+<p><b>Mission:</b> เลือกส่วนผสมอย่างน้อย 3 อย่าง แล้วสร้างประโยคภาษาอังกฤษของฉัน 🌭</p>
+<p class="mini">ตัวอย่าง: <b>My sandwich has bread, sausage, and lettuce.</b></p>
+<div class="grid" id="ingredientChoices">
+<label class="tile"><input type="checkbox" value="bread"> 🍞 Bread</label>
+<label class="tile"><input type="checkbox" value="sausage"> 🌭 Sausage</label>
+<label class="tile"><input type="checkbox" value="egg"> 🥚 Egg</label>
+<label class="tile"><input type="checkbox" value="lettuce"> 🥬 Lettuce</label>
+<label class="tile"><input type="checkbox" value="tomato"> 🍅 Tomato</label>
+<label class="tile"><input type="checkbox" value="cucumber"> 🥒 Cucumber</label>
+</div>
+<button class="btn pink" onclick="createMenu(this)">🌈 Create My Sandwich</button>
+<p id="menu" class="big"></p>
+<p id="menuThai" class="feedback"></p>
+</section>
+<section class="card hidden" id="posttest">
+<h2>🏁 Post-test</h2>
+<p><b>คำชี้แจง:</b> เลือกคำตอบที่ถูกต้องที่สุดเพียง 1 ข้อ จำนวน 5 ข้อ</p>
+<div id="postQuestions"></div>
+<button class="btn yellow" id="postSubmitBtn" onclick="submitTest('post')">🏆 ส่ง Post-test</button>
+<div id="postResult" class="feedback"></div>
+</section><h2>🏁 Post-test</h2><p>ทำแบบทดสอบหลังเรียน 5 ข้อ</p><div id="postQuestions"></div><button class="btn yellow" onclick="submitTest('post')">🏆 ส่ง Post-test</button><div id="postResult" class="feedback"></div></section>
+<section class="card hidden" id="resultCard"><h2>🎉 Congratulations!</h2><p class="big">เก่งมาก <span id="rName"></span>!</p><div class="grid"><div class="tile">📝<br>Pre-test<br><span id="rPre" class="big"></span></div><div class="tile">🏆<br>Post-test<br><span id="rPost" class="big"></span></div><div class="tile">📈<br>พัฒนาการ<br><span id="rGain" class="big"></span></div></div><p>เรียนจบแล้ว! สามารถพิมพ์ใบประกาศด้านล่างได้</p><button class="btn" onclick="document.getElementById('certificateCard').scrollIntoView()">🎓 ดูใบประกาศ</button></section>
+<section class="card hidden" id="certificateCard"><div class="certificate"><div class="badge">🌟 CERTIFICATE OF COMPLETION 🌟</div><h3>Let's Make a Sausage Sandwich!</h3><p>This certificate is proudly presented to</p><h2 id="certName">Student</h2><p>for successfully completing the Digital English Lesson<br><b>Primary 5</b></p><p id="certScore"></p><p id="certDate"></p><p>👩‍🍳 Young Chef • English Learner • Sandwich Creator 🌭</p></div><button class="btn yellow" onclick="window.print()">🖨️ พิมพ์ใบประกาศ</button></section>
+<footer>🌈 Digital English Lesson for Primary 5 • Let's Make a Sausage Sandwich!<br><span class="mini">บทเรียนนี้ทำงานแบบ Self-paced เปิดได้ทั้งคอมพิวเตอร์และโทรศัพท์มือถือ</span></footer>
+</div>
+<script>
+const qs=[
+['Which ingredient is the main ingredient in a sausage sandwich?',['Sausage','Lettuce','Cucumber'],0],
+['What do you spread on the bread?',['Sauce','Ice cream','Juice'],0],
+['What should you do first?',['Prepare the bread','Eat the sandwich','Close the sandwich'],0],
+['Which word means “ตัด”?',['cut','eat','add'],0],
+['Which sentence is correct?',['Add the sausage.','Add the cut.','Eat the breading.'],0]
+];
+let student='',progress=0,preScore=null,postScore=null,done=new Set(),gamePoints=0;
+
+function startLesson(){
+ student=document.getElementById('studentName').value.trim();
+ if(!student){document.getElementById('welcomeMsg').textContent='😊 กรุณากรอกชื่อก่อนเริ่มเรียน';return}
+ document.getElementById('welcome').classList.add('hidden');
+ document.getElementById('pretest').classList.remove('hidden');
+ buildTest('pre');
+ document.getElementById('lesson').classList.remove('hidden');
+ scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildTest(type){
+ const box=document.getElementById(type+'Questions');
+ box.innerHTML='';
+ qs.forEach((q,i)=>{
+  const d=document.createElement('div');
+  d.className='test-question';
+  d.innerHTML='<p><b>'+(i+1)+'. '+q[0]+'</b></p>'+
+   q[1].map((x,j)=>`<label style="display:block;margin:7px;padding:11px;border-radius:10px;background:#f8fcff;cursor:pointer">
+   <input type="radio" name="${type}${i}" value="${j}"> ${x}</label>`).join('');
+  box.appendChild(d);
+ });
+}
+
+function submitTest(type){
+ let score=0, unanswered=0;
+ qs.forEach((q,i)=>{
+  const a=document.querySelector(`input[name="${type}${i}"]:checked`);
+  if(!a) unanswered++;
+  else if(+a.value===q[2]) score++;
+ });
+ if(unanswered){
+  document.getElementById(type+'Result').textContent=`⚠️ กรุณาตอบให้ครบทุกข้อ (ยังไม่ได้ตอบ ${unanswered} ข้อ)`;
+  return;
+ }
+ if(type==='pre'){
+  preScore=score;
+  document.getElementById('preResult').textContent=`🎯 คะแนน Pre-test: ${score}/5`;
+  document.querySelectorAll('.activity').forEach(x=>x.classList.remove('hidden'));
+  document.getElementById('posttest').classList.remove('hidden');
+  buildTest('post');
+  scrollTo({top:document.querySelector('.activity').offsetTop-10,behavior:'smooth'});
+ }else{
+  if(preScore===null)return;
+  postScore=score;
+  document.getElementById('postResult').textContent=`🏆 คะแนน Post-test: ${score}/5`;
+  const btn=document.getElementById('postSubmitBtn');
+  btn.disabled=true; btn.textContent='✅ ส่งคำตอบแล้ว';
+  showResults();
+ }
+}
+
+function completeActivity(btn){
+ const sec=btn.closest('.activity');
+ if(done.has(sec))return;
+ done.add(sec);
+ progress=Math.min(100,progress+(+sec.dataset.p||10));
+ update();
+ btn.textContent='✅ Completed';
+}
+
+function update(){
+ document.getElementById('bar').style.width=progress+'%';
+ document.getElementById('pct').textContent=progress;
+}
+
+function quiz(el,ok,id){
+ const parent=el.parentElement;
+ if(parent.dataset[id])return;
+ el.classList.add(ok?'correct':'wrong');
+ document.getElementById(id).textContent=ok?'🎉 Correct!':'💡 ลองอีกครั้งนะ';
+ if(ok)parent.dataset[id]=1;
+}
+
+function gamePick(btn,correct){
+ if(btn.dataset.used)return;
+ btn.dataset.used=1;
+ if(correct){btn.classList.add('correct');gamePoints++;document.getElementById('gameMsg').textContent='🎉 Great choice!'}
+ else{btn.classList.add('wrong');document.getElementById('gameMsg').textContent='😊 ลองเลือกส่วนผสมสำหรับแซนด์วิชใหม่'}
+ document.getElementById('gameScore').textContent=`คะแนนเกม: ${gamePoints} / 3`;
+ if(gamePoints>=3){
+  document.getElementById('gameMsg').textContent='🏆 Mission Complete! Young Chef!';
+  completeActivity(document.querySelector('#gameCard').querySelector('button.option:last-of-type') || document.querySelector('#gameCard'));
+ }
+}
+
+function createMenu(btn){
+ const c=[...document.querySelectorAll('#ingredientChoices input[type=checkbox]:checked')].map(x=>x.value);
+ if(c.length<3){
+  document.getElementById('menu').textContent='🌟 กรุณาเลือกอย่างน้อย 3 ส่วนผสม';
+  document.getElementById('menuThai').textContent='เลือกส่วนผสมเพิ่มอีกนิด แล้วกด Create My Sandwich อีกครั้ง';
+  return;
+ }
+ const pretty=c.map((x,i)=>i===c.length-1&&c.length>1?'and '+x:x);
+ const sentence='My sandwich has '+(c.length===1?c[0]:pretty.join(', '))+'.';
+ document.getElementById('menu').textContent=`🌭 ${student}'s Sandwich: ${sentence}`;
+ document.getElementById('menuThai').textContent='🎉 เยี่ยมมาก! ประโยคของฉัน: “แซนด์วิชของฉันมี '+c.join(', ')+'”';
+ completeActivity(btn);
+}
+
+function speak(t){
+ if('speechSynthesis' in window){
+  speechSynthesis.cancel();
+  let u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.8;speechSynthesis.speak(u);
+ }
+}
+
+function showResults(){
+ document.getElementById('resultCard').classList.remove('hidden');
+ document.getElementById('certificateCard').classList.remove('hidden');
+ document.getElementById('rName').textContent=student;
+ document.getElementById('rPre').textContent=preScore+'/5';
+ document.getElementById('rPost').textContent=postScore+'/5';
+ document.getElementById('rGain').textContent=((postScore-preScore)>=0?'+':'')+(postScore-preScore);
+ document.getElementById('certName').textContent=student;
+ document.getElementById('certScore').textContent=`Post-test: ${postScore}/5 • Lesson Progress: ${progress}%`;
+ document.getElementById('certDate').textContent=new Date().toLocaleDateString('th-TH',{dateStyle:'long'});
+ scrollTo({top:document.getElementById('resultCard').offsetTop-10,behavior:'smooth'});
+}
+</script>
+</body></html>
